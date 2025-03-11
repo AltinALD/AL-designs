@@ -326,7 +326,7 @@ body, html {
 
 .portfolio-item {
     position: relative;
-    background: #fff;
+    background: linear-gradient(to right, red, #b22222, #808080, grey);
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
