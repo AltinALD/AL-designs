@@ -82,7 +82,11 @@ updateSlides();
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const cursor = document.getElementById("cursor");
 
-
-
-
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = `${e.pageX}px`;  // Use pageX instead of clientX
+        cursor.style.top = `${e.pageY}px`;   // Use pageY instead of clientY
+    });
+});

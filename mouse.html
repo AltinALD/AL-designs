@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Red Arrow Cursor</title>
+    <style>
+        /* Remove default cursor */
+        body {
+            cursor: none;
+            background-color: #ffffff;
+            overflow: hidden;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+/* Custom 3D Arrow Cursor */
+
+/* Custom 3D Arrow Cursor */
+.cursor {
+    position: absolute;
+    width: 70px;  /* Increased size for better visibility */
+    height: 70px; /* Increased size for better visibility */
+    clip-path: polygon(50% 0%, 100% 100%, 50% 75%, 0% 100%);
+    background: linear-gradient(180deg, rgb(230, 9, 9) 0%, rgba(230, 0, 0, 0.8) 100%); /* Gradient to simulate light */
+    
+    /* Add multiple shadow layers for a deeper effect */
+    box-shadow: 
+        0 0 5px rgba(0, 0, 0, 0.5), 
+        0 5px 15px rgba(0, 0, 0, 0.3), 
+        0 5px 25px rgba(255, 0, 0, 0.8),  /* Red shadow to match the cursor's color */
+        0 0 30px rgba(255, 0, 0, 0.7); /* Larger red glow */
+    
+    rotate: -25deg;
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+    pointer-events: none;
+    z-index: 9999;
+    
+    /* Add a middle line with a different color for 3D effect */
+    background-image: linear-gradient(to right, rgb(255, 52, 52) 50%, rgb(121, 12, 12) 50%);
+    background-size: 100% 50%;  /* Adjusted background size */
+    background-position: center top;  /* Center the line vertically */
+    
+    /* Inset shadow for depth effect */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7),  /* Inner shadow for 3D effect */
+                0 0 5px rgba(0, 0, 0, 0.5), 
+                0 5px 15px rgba(0, 0, 0, 0.3), 
+                0 5px 25px rgba(255, 0, 0, 0.8), 
+                0 0 30px rgba(255, 0, 0, 0.7); /* Outer glow */
+    
+    filter: blur(2px);  /* Soft blur for a glowing effect */
+}
+
+/* Click effect */
+.click-effect {
+    animation: pulse 0.2s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-top: 100px;">Cyberpunk Red Arrow Cursor</h1>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+
+        document.addEventListener('click', () => {
+            cursor.classList.add('click-effect');
+            setTimeout(() => cursor.classList.remove('click-effect'), 200);
+        });
+    </script>
+
+</body>
+</html>

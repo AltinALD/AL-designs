@@ -1,63 +1,144 @@
-
-
-/* Basic Styles */
-/* Basic Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
     background: linear-gradient(100deg, #757575, #ffffff);
-
-    position: relative; /* Needed for any other positioned elements */
+    position: relative;
+    cursor: none; /* Hide default cursor */
 }
+
+/* Custom Cursor */
+/* Custom 3D Arrow Cursor */
+.cursor {
+    position: absolute;
+    width: 25px;  /* Increased size for better visibility */
+    height: 25px; /* Increased size for better visibility */
+    clip-path: polygon(50% 0%, 100% 100%, 50% 75%, 0% 100%);
+    background: linear-gradient(180deg, rgb(230, 9, 9) 0%, rgba(230, 0, 0, 0.8) 100%); /* Gradient to simulate light */
+    
+    /* Add multiple shadow layers for a deeper effect */
+    box-shadow: 
+        0 0 5px rgba(0, 0, 0, 0.5), 
+        0 5px 15px rgba(0, 0, 0, 0.3), 
+        0 5px 25px rgba(255, 0, 0, 0.8),  /* Red shadow to match the cursor's color */
+        0 0 30px rgba(255, 0, 0, 0.7); /* Larger red glow */
+    
+    rotate: -25deg;
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+    pointer-events: none;
+    z-index: 9999;
+    
+    /* Add a middle line with a different color for 3D effect */
+    background-image: linear-gradient(to right, rgb(255, 52, 52) 50%, rgb(121, 12, 12) 50%);
+    background-size: 100% 50%;  /* Adjusted background size */
+    background-position: center top;  /* Center the line vertically */
+    
+    /* Inset shadow for depth effect */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7),  /* Inner shadow for 3D effect */
+                0 0 5px rgba(0, 0, 0, 0.5), 
+                0 5px 15px rgba(0, 0, 0, 0.3), 
+                0 5px 25px rgba(255, 0, 0, 0.8), 
+                0 0 30px rgba(255, 0, 0, 0.7); /* Outer glow */
+    
+    filter: blur(2px);  /* Soft blur for a glowing effect */
+}
+
+
+/* Click effect */
+.click-effect {
+    animation: pulse 0.2s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+
+
 
 /* Navigation */
 nav {
-    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0); /* Transparent background */
     color: white;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 3; /* Ensure the navbar stays above the header */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+
 nav .logo img {
-    height: 50px;
+    height: 100px;
+    margin-left: 80px;
 }
 
 nav ul {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding-right: 100px;
     display: flex;
+   
 }
-
 nav ul li {
-    margin-left: 20px;
+    position: relative; /* Needed for absolute positioning of the underline */
+    margin-left: 40px;
 }
-
 nav ul li a {
     color: white;
+    font-size: 20px;
+    font-weight: 650;
     text-decoration: none;
     padding: 5px 10px;
     transition: color 0.3s;
+    position: relative;
 }
 
+/* Underline effect */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px; /* Adjust distance from text */
+    width: 0%; /* Start with no width */
+    height: 2px;
+    background-color: red;
+    transition: width 0.4s ease-in-out; /* Slow transition */
+}
+
+/* On hover, expand underline from left to right */
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+
+
+/* Optional: Change text color on hover */
 nav ul li a:hover {
-    color: #ff5722;
+    color: #d10000;
+    
+    
 }
 
 /* Header */
 header {
     position: relative;
-    height: 660px;
-
-    background-image: url('./d.jpg');
-    background-size: cover;
+    height: 720px;
+    background-image: url('./r2.jpg');
+    background-size:cover;
     background-position: center;
     margin: 0;
     padding: 0;
+    z-index: 1; /* Ensure header stays below the navbar */
 }
 
 /* Adjust the overlay to make content more visible */
@@ -68,8 +149,8 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3); /* Adjust transparency for better visibility */
-    backdrop-filter: blur(3px); /* Reduce blur for clearer content visibility */
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust transparency for better visibility */
+    backdrop-filter: blur(2px); /* Reduce blur for clearer content visibility */
     z-index: 1; /* Ensure the overlay stays below the content */
 }
 
@@ -91,7 +172,7 @@ header::before {
 /* About Section Styling */
 .about-section {
     flex: 1;
-    font-size: 70px;
+    font-size: 55px;
     font-family:'Bebas Neue','Georgia', 'Times New Roman', serif; /* Use classic newspaper font style */
     color: #fff;
     padding: 20px; /* Add padding for spacing */
@@ -101,6 +182,11 @@ header::before {
     height: 100%; /* Ensure it covers the full height of the header */
     box-sizing: border-box; /* Include padding in the width */
    
+}
+.about-section p{
+
+    margin-top: 170px;
+    padding-left: 35px;
 }
 
 p2{
@@ -313,77 +399,274 @@ body, html {
 /* Portfolio Section */
 .portfolio {
     padding: 50px 10%;
-   
 }
 
+/* Portfolio Grid */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     justify-content: center;
     margin-top: 30px;
 }
 
+/* Portfolio Item */
 .portfolio-item {
     position: relative;
-    background: linear-gradient(to right, red, #b22222, #808080, grey);
-    border-radius: 10px;
+    background: linear-gradient(135deg, #232526, #414345, #656464,  #9e9e9e);
+
+    border-radius: 15px;
     overflow: hidden;
     text-align: center;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s;
+    backdrop-filter: blur(10px);
 }
 
+/* Hover Effect */
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #ff4d4d, #b30000);
+}
+
+/* Image Styling */
 .portfolio-item img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
 }
 
+/* Image Hover Effect */
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Heading */
 .portfolio-item h3 {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    color: #333;
+    font-size: 1.3rem;
+    margin: 12px 0;
+    color: #ffcccc;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
+/* Description */
 .portfolio-item p {
     font-size: 1rem;
-    color: #666;
+    color: #ffffff;
+    opacity: 0.9;
+    font-weight: 300;
 }
+
+/* Link */
+.portfolio-item a {
+    font-size: 1.1rem;
+    color: #e1dcb9;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Link Hover */
+
 
 /* Hover Effect */
 .portfolio-item:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
-
+/* Link Hover */
+.portfolio-item a:hover{
+    font-size: 1.2rem;
+    color: #fff52e;
+}
 
 /* Contact Section */
-form {
+
+#contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    text-align: center;
+}
+
+/* Contact Container - Ensures form is on the left and info on the right */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px; /* Adjusts spacing between form and contact info */
+    max-width: 1000px; /* Sets max width to avoid stretching */
+    width: 90%; /* Ensures responsiveness */
+    margin: 0 auto; /* Centers the container */
+}
+
+/* Contact Form (Left Side) */
+.contact-form {
+    flex: 1; /* Takes up equal space */
+    max-width: 50%; /* Prevents it from being too large */
+}
+
+/* Contact Information (Right Side: WhatsApp + Google Meet) */
+.contact-info {
+    flex: 1; /* Takes up equal space */
+    max-width: 50%; /* Ensures balance */
     display: flex;
     flex-direction: column;
+    gap: 30px;
+    justify-content: center;
     align-items: center;
 }
 
+
+
+/* Form Styles */
+form {
+    width: 100%;
+    padding: 40px;
+    background: linear-gradient(135deg, #232526, #414345, #656464,  #9e9e9e);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    position: relative;
+    color: #ffffff;
+}
+
+/* Input and Textarea Styling */
 form input, form textarea {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-form button {
-    padding: 10px 20px;
-    background-color: red;
-    color: white;
+    width: 90%;
+    padding: 12px;
+    margin: 15px 0;
     border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-form button:hover {
-    background-color: #ff5722;
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.766);
 }
+
+/* Input and Textarea Hover Effects */
+form input:hover, form textarea:hover,
+form input:focus, form textarea:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(191, 191, 191, 0.5);
+}
+
+/* Button Styling */
+form button {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #ff4141, #a55050, #332c2c);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effects */
+form button:hover {
+    background-color: #555;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+    color: white;
+}
+
+/* Title Animation */
+h2 {
+    font-size: 42px;
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Fade-in Effect for Title */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Booking & WhatsApp Sections */
+.meeting-section, .whatsapp-section {
+    width: 420px;
+    padding: 30px;
+    background: linear-gradient(135deg, #232526, #414345, #656464, #9e9e9e);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Titles */
+.meeting-section h3, .whatsapp-section h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: red;
+}
+
+/* Buttons (Google Calendar & WhatsApp) */
+.book-meeting-btn, .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #ff4141, #a55050, #332c2c);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Button Hover Effects */
+.book-meeting-btn:hover, .whatsapp-link:hover {
+    background-color: #555;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+/* WhatsApp Icon */
+.whatsapp-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-form, .contact-info {
+        max-width: 100%;
+    }
+}
+
+
+
+
 
 /* Footer */
 footer {
@@ -397,7 +680,8 @@ footer {
 
 /* Magic Text */
 #magic-text {
-    font-size: 6em;
+    width: 500px;
+    font-size: 4em;
     color: #ffffff;
     display: inline-block;
     position: relative;
@@ -410,6 +694,9 @@ footer {
     color: transparent;
     animation: gradientShift 7s infinite linear, topDownReveal 14s ease-in-out infinite;
     -webkit-text-stroke: 0.1px #000000; /* Outline effect */
+
+    margin-top: 180px;
+    padding-right: 90px;
 }
 
 /* Shine effect only on text */
@@ -436,19 +723,21 @@ footer {
 .cta-btn {
     text-align: center;
     display: inline-block;
-    font-size: 25px;
+    font-weight: 500;
+    font-size: 23px;
     padding: 10px 20px;
     background-color: rgb(222, 26, 26);
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
-    margin-right: 200px;
+    margin-top: 5px;
+    margin-right: 100px;
     
 }
 
 .cta-btn:hover {
     background-color: #c74dbb;
+    transition: all 0.4s ease;
 }
 
 /* Keyframes for Text Animation */

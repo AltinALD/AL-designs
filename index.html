@@ -15,16 +15,19 @@
     <!-- Navigation Bar -->
     <nav>
         <div class="logo">
-            <img src="al design.png" alt="ALDesign Logo">
+            <img src="al_design2.png" alt="ALDesign Logo">
         </div>
         <ul>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#ps">Services</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#contact">Contact Us</a></li>
         </ul>
     </nav>
+
     <header id="header">
+
+
         <div class="header-content">
             <!-- About Us section placed inside the header on the left -->
             <div class="about-section">
@@ -143,18 +146,47 @@
                 </div>
             </div>
         </section>
-        
 
-    <!-- Contact Us Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/{your-form-id}" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+
+ <!-- Contact Us Section -->
+<section id="contact">
+    <div class="contact-container">
+        <!-- Left: Contact Form -->
+       
+            <form action="https://formspree.io/f/{your-form-id}" method="POST">
+                <h2>Contact Us</h2>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+       
+
+        <!-- Right: Booking & WhatsApp -->
+        <div class="contact-info">
+            <!-- Book a Meeting -->
+            <div class="meeting-section">
+                <h3>Book a Meeting</h3>
+                <p>Schedule a meeting at your convenience.</p>
+                <a href="https://calendar.google.com/calendar/u/0/r" target="_blank" class="book-meeting-btn">
+                    Book via Google Calendar
+                </a>
+            </div>
+
+            <!-- WhatsApp Contact -->
+            <div class="whatsapp-section">
+                <h3>Contact via WhatsApp</h3>
+                <p>Phone: <strong>+389 71 325 668</strong></p>
+                <a href="https://wa.me/qr/56KXC2MOK2SBK1" target="_blank" class="whatsapp-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" class="whatsapp-icon">
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
     <!-- Footer -->
     <footer>
@@ -166,5 +198,7 @@
         </div>
     </footer>
 
+
+    <div class="cursor" id="cursor"></div> <!--Cursor ending tag-->
 </body>
 </html>
